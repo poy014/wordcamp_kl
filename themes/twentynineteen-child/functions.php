@@ -55,6 +55,24 @@ function my_games_cpt() {
 
       'hierarchical'       => true, // allow parenting
       'capability_type'    => 'page', // need to allow parenting and add "page-attributes" to support param
+
+      // QUERY RELATED
+      'can_export'							=> TRUE,
+		'exclude_from_search'				=> FALSE,
+		'has_archive'							=> FALSE,
+		'hierarchical'							=> FALSE,
+		'public'									=> TRUE,
+		'publicly_querable'					=> TRUE,
+      'query_var'								=> TRUE,
+      
+      // PERMALINKS
+      'rewrite'								=> FALSE,
+      
+      // ADMIN UI RELATED
+		'show_in_admin_bar'					=> TRUE,
+		'show_in_menu'							=> TRUE,
+		'show_in_nav_menu'					=> TRUE,
+		'show_ui'								=> TRUE,
    );
    register_post_type( 'games', $args ); 
  }
