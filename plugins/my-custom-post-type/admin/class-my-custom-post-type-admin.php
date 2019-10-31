@@ -179,7 +179,7 @@ class My_Custom_Post_Type_Admin {
 	/*
 	* function to initiate our CPT's taxonomy
 	*/
-	public static function new_taxonomy_type() {
+	public static function my_taxonomy() {
 
 		// variable
 		$plural 	= 'Genres';
