@@ -20,7 +20,7 @@ function my_games_cpt() {
      'not_found'          => __( 'No game found' ),
      'not_found_in_trash' => __( 'No game found in the Trash' ), 
      'parent_item_colon'  => '',
-     'menu_name'          => 'Games'
+     'menu_name'          => 'Games',
    );
    $args = array(
      'labels'        => $labels,
@@ -29,6 +29,11 @@ function my_games_cpt() {
      'menu_position' => 5,
      'supports'      => array( 'title', 'editor', 'thumbnail', 'excerpt', 'comments' ),
      'has_archive'   => true,
+
+     // customization starts here!
+     'menu_icon'           => 'dashicons-buddicons-activity', // using dashicon: https://developer.wordpress.org/resource/dashicons/
+      //   'menu_icon'           => 'http://www.example.com/wp-content/uploads/2014/11/your-cpt-icon.png', // using your own image
+   
    );
    register_post_type( 'games', $args ); 
  }
