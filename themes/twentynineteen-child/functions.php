@@ -34,6 +34,24 @@ function my_games_cpt() {
      'menu_icon'           => 'dashicons-buddicons-activity', // using dashicon: https://developer.wordpress.org/resource/dashicons/
       //   'menu_icon'           => 'http://www.example.com/wp-content/uploads/2014/11/your-cpt-icon.png', // using your own image
    
+      'menu_position' => 10
+      /*
+      MENU POSITION:
+         2 Dashboard
+         4 Separator
+         5 Posts <-- DEFAULT
+         10 Media
+         15 Links
+         20 Pages
+         25 Comments
+         59 Separator
+         60 Appearance
+         65 Plugins
+         70 Users
+         75 Tools
+         80 Settings
+         99 Separator
+      */
    );
    register_post_type( 'games', $args ); 
  }
