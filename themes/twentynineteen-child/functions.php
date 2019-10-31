@@ -27,14 +27,14 @@ function my_games_cpt() {
      'description'   => 'Holds games and game specific data',
      'public'        => true,
      'menu_position' => 5,
-     'supports'      => array( 'title', 'editor', 'thumbnail', 'excerpt', 'comments' ),
+     'supports'      => array( 'title', 'editor', 'thumbnail', 'excerpt', 'comments', 'page-attributes'),
      'has_archive'   => true,
 
      // customization starts here!
      'menu_icon'           => 'dashicons-buddicons-activity', // using dashicon: https://developer.wordpress.org/resource/dashicons/
-      //   'menu_icon'           => 'http://www.example.com/wp-content/uploads/2014/11/your-cpt-icon.png', // using your own image
+      //'menu_icon'           => 'http://www.example.com/wp-content/uploads/2014/11/your-cpt-icon.png', // using your own image
    
-      'menu_position' => 10,
+      'menu_position'      => 10,
       /*
       MENU POSITION:
          2 Dashboard
@@ -53,7 +53,8 @@ function my_games_cpt() {
          99 Separator
       */
 
-      'hierarchical' => true // allow parenting
+      'hierarchical'       => true, // allow parenting
+      'capability_type'    => 'page', // need to allow parenting and add "page-attributes" to support param
    );
    register_post_type( 'games', $args ); 
  }
