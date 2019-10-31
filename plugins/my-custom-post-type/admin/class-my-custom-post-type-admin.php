@@ -105,7 +105,7 @@ class My_Custom_Post_Type_Admin {
 	*/
 	public static function my_cpt() {
 
-		// variable
+		// variables
 		$cap_type 	= 'post';
 		$plural 	= 'Movies';
 		$single 	= 'Movie';
@@ -175,5 +175,62 @@ class My_Custom_Post_Type_Admin {
 
 		register_post_type( strtolower( $cpt_name ), $opts ); // wp function to add CPT
 	}
+
+	/*
+	* function to initiate our CPT's taxonomy
+	*/
+	public static function new_taxonomy_type() {
+
+		// variable
+		$plural 	= 'Genres';
+		$single 	= 'Genre';
+		$tax_name 	= 'movie_genre';
+
+		// CPT taxonomy settings
+		$opts['hierarchical']							= TRUE;
+		$opts['public']									= TRUE;
+		$opts['query_var']								= $tax_name;
+		$opts['show_admin_column'] 						= FALSE;
+		$opts['show_in_nav_menus']						= TRUE;
+		$opts['show_tag_cloud'] 						= TRUE;
+		$opts['show_ui']								= TRUE;
+		$opts['sort'] 									= '';
+
+		// Set Capabilities
+		$opts['capabilities']['assign_terms'] 			= 'edit_posts';
+		$opts['capabilities']['delete_terms'] 			= 'manage_categories';
+		$opts['capabilities']['edit_terms'] 			= 'manage_categories';
+		$opts['capabilities']['manage_terms'] 			= 'manage_categories';
+
+		// Labels on WP-ADMIN
+		$opts['labels']['add_new_item'] 				= esc_html__( "Add New {$single}", 'my-custom-post-type' );
+		$opts['labels']['add_or_remove_items'] 			= esc_html__( "Add or remove {$plural}", 'my-custom-post-type' );
+		$opts['labels']['all_items'] 					= esc_html__( $plural, 'my-custom-post-type' );
+		$opts['labels']['choose_from_most_used'] 		= esc_html__( "Choose from most used {$plural}", 'my-custom-post-type' );
+		$opts['labels']['edit_item'] 					= esc_html__( "Edit {$single}" , 'my-custom-post-type');
+		$opts['labels']['menu_name'] 					= esc_html__( $plural, 'my-custom-post-type' );
+		$opts['labels']['name'] 						= esc_html__( $plural, 'my-custom-post-type' );
+		$opts['labels']['new_item_name'] 				= esc_html__( "New {$single} Name", 'my-custom-post-type' );
+		$opts['labels']['not_found'] 					= esc_html__( "No {$plural} Found", 'my-custom-post-type' );
+		$opts['labels']['parent_item'] 					= esc_html__( "Parent {$single}", 'my-custom-post-type' );
+		$opts['labels']['parent_item_colon'] 			= esc_html__( "Parent {$single}:", 'my-custom-post-type' );
+		$opts['labels']['popular_items'] 				= esc_html__( "Popular {$plural}", 'my-custom-post-type' );
+		$opts['labels']['search_items'] 				= esc_html__( "Search {$plural}", 'my-custom-post-type' );
+		$opts['labels']['separate_items_with_commas'] 	= esc_html__( "Separate {$plural} with commas", 'my-custom-post-type' );
+		$opts['labels']['singular_name'] 				= esc_html__( $single, 'my-custom-post-type' );
+		$opts['labels']['update_item'] 					= esc_html__( "Update {$single}", 'my-custom-post-type' );
+		$opts['labels']['view_item'] 					= esc_html__( "View {$single}", 'my-custom-post-type' );
+
+		// permalink related
+		$opts['rewrite']['ep_mask']						= EP_NONE;
+		$opts['rewrite']['hierarchical']				= FALSE;
+		$opts['rewrite']['slug']						= esc_html__( strtolower( $tax_name ), 'my-custom-post-type' );
+		$opts['rewrite']['with_front']					= FALSE;
+
+		$opts = apply_filters( 'my-custom-post-type-taxonomy-options', $opts );
+
+		register_taxonomy( $tax_name, 'movie', $opts );
+
+	} // new_taxonomy_type()
 
 }
