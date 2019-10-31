@@ -30,7 +30,11 @@ class My_Custom_Post_Type_Activator {
 	 * @since    1.0.0
 	 */
 	public static function activate() {
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-my-custom-post-type-admin.php';
 
+		My_Custom_Post_Type_Admin::my_cpt();
+
+		flush_rewrite_rules();
 	}
 
 }
