@@ -100,4 +100,80 @@ class My_Custom_Post_Type_Admin {
 
 	}
 
+	/*
+	* function to initiate our CPT
+	*/
+	public static function my_cpt() {
+
+		// variable
+		$cap_type 	= 'post';
+		$plural 	= 'Movies';
+		$single 	= 'Movie';
+		$cpt_name 	= 'Movie';
+
+		// CPT settings
+		$opts['can_export']								= TRUE;
+		$opts['capability_type']						= $cap_type;
+		$opts['description']							= '';
+		$opts['exclude_from_search']					= FALSE;
+		$opts['has_archive']							= FALSE;
+		$opts['hierarchical']							= FALSE;
+		$opts['map_meta_cap']							= TRUE;
+		$opts['menu_icon']								= 'dashicons-media-video';
+		$opts['menu_position']							= 25;
+		$opts['public']									= TRUE;
+		$opts['publicly_querable']						= TRUE;
+		$opts['query_var']								= TRUE;
+		$opts['register_meta_box_cb']					= '';
+		$opts['rewrite']								= FALSE;
+		$opts['show_in_admin_bar']						= TRUE;
+		$opts['show_in_menu']							= TRUE;
+		$opts['show_in_nav_menu']						= TRUE;
+		$opts['show_ui']								= TRUE;
+		$opts['supports']								= array( 'title', 'editor', 'thumbnail' );
+		$opts['taxonomies']								= array();
+
+		// Set Capabilities
+		$opts['capabilities']['delete_others_posts']	= "delete_others_{$cap_type}s";
+		$opts['capabilities']['delete_post']			= "delete_{$cap_type}";
+		$opts['capabilities']['delete_posts']			= "delete_{$cap_type}s";
+		$opts['capabilities']['delete_private_posts']	= "delete_private_{$cap_type}s";
+		$opts['capabilities']['delete_published_posts']	= "delete_published_{$cap_type}s";
+		$opts['capabilities']['edit_others_posts']		= "edit_others_{$cap_type}s";
+		$opts['capabilities']['edit_post']				= "edit_{$cap_type}";
+		$opts['capabilities']['edit_posts']				= "edit_{$cap_type}s";
+		$opts['capabilities']['edit_private_posts']		= "edit_private_{$cap_type}s";
+		$opts['capabilities']['edit_published_posts']	= "edit_published_{$cap_type}s";
+		$opts['capabilities']['publish_posts']			= "publish_{$cap_type}s";
+		$opts['capabilities']['read_post']				= "read_{$cap_type}";
+		$opts['capabilities']['read_private_posts']		= "read_private_{$cap_type}s";
+
+		// Labels on WP-ADMIN
+		$opts['labels']['add_new']						= esc_html__( "Add New {$single}", 'my-custom-post-type' );
+		$opts['labels']['add_new_item']					= esc_html__( "Add New {$single}", 'my-custom-post-type' );
+		$opts['labels']['all_items']					= esc_html__( $plural, 'my-custom-post-type' );
+		$opts['labels']['edit_item']					= esc_html__( "Edit {$single}" , 'my-custom-post-type' );
+		$opts['labels']['menu_name']					= esc_html__( $plural, 'my-custom-post-type' );
+		$opts['labels']['name']							= esc_html__( $plural, 'my-custom-post-type' );
+		$opts['labels']['name_admin_bar']				= esc_html__( $single, 'my-custom-post-type' );
+		$opts['labels']['new_item']						= esc_html__( "New {$single}", 'my-custom-post-type' );
+		$opts['labels']['not_found']					= esc_html__( "No {$plural} Found", 'my-custom-post-type' );
+		$opts['labels']['not_found_in_trash']			= esc_html__( "No {$plural} Found in Trash", 'my-custom-post-type' );
+		$opts['labels']['parent_item_colon']			= esc_html__( "Parent {$plural} :", 'my-custom-post-type' );
+		$opts['labels']['search_items']					= esc_html__( "Search {$plural}", 'my-custom-post-type' );
+		$opts['labels']['singular_name']				= esc_html__( $single, 'my-custom-post-type' );
+		$opts['labels']['view_item']					= esc_html__( "View {$single}", 'my-custom-post-type' );
+
+		// permalink related
+		$opts['rewrite']['ep_mask']						= EP_PERMALINK;
+		$opts['rewrite']['feeds']						= FALSE;
+		$opts['rewrite']['pages']						= TRUE;
+		$opts['rewrite']['slug']						= esc_html__( strtolower( $plural ), 'my-custom-post-type' );
+		$opts['rewrite']['with_front']					= FALSE;
+
+		$opts = apply_filters( 'my-custom-post-type-cpt-options', $opts );
+
+		register_post_type( strtolower( $cpt_name ), $opts ); // wp function to add CPT
+	}
+
 }
